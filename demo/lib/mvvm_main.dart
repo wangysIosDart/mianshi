@@ -56,7 +56,7 @@ class _CounterPageState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('MVVM Counter')),
+      appBar: AppBar(title: const Text('MVVM Counter')),
       body: Center(
         child: Consumer<CounterViewModel>(
           builder: (context, viewModel, child) {
@@ -68,7 +68,7 @@ class _CounterPageState extends State<CounterPage> {
         onPressed: () {
           context.read<CounterViewModel>().increment();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
