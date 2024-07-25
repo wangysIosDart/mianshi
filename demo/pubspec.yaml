@@ -46,6 +46,7 @@ dependencies:
 
   fijkplayer: ^0.11.0
 
+  skeletonizer: ^1.4.1+1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,8 @@ dev_dependencies:
   riverpod_generator: ^2.4.0
   # 专为Riverpod设计的一套lint规则，有助于再使用Riverpod时执行最佳实践
   riverpod_lint: ^2.3.10
+
+  shimmer: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
