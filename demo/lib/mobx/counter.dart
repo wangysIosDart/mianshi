@@ -7,7 +7,7 @@ part 'counter.g.dart';
 // .g 文件会生成 _$Counter
 class Counter = _Counter with _$Counter;
 
-final Counter count = Counter();
+final Counter counter = Counter();
 // The store-class
 abstract class _Counter with Store {
   @observable
@@ -15,6 +15,16 @@ abstract class _Counter with Store {
 
   @action
   void increment() {
-    value++;
+    value = 1;
   }
+
+
+  @observable
+  bool show = true;
+
+  @action
+  void toggleShow() {
+    show = false;
+  }
+
 }
