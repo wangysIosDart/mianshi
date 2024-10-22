@@ -1,0 +1,238 @@
+我用的这个库
+https://gitee.com/breakfly/device_info_plus
+我仔细看了下，uuid确实每次会变，它里面自己实现了keychain存储。
+
+播放器遇到的坑？
+定时器的优化
+卡顿的处理
+
+flutter 热更新
+
+1. websocket 断点重连之后怎么找回漏掉的数据？
+2. mvvm 2种模式之间的差别(具体没明白他的意思)
+3. 工作的主要成就和难点，自己的优势？
+4. git rebase 和 git merge的区别
+
+
+鱼骨架
+
+启动页动画
+
+
+1、什么是Flutter？它的优势是什么？
+跨平台性：
+高性能： Flutter 使用自带的渲染引擎（Skia）来绘制应用程序界面，不依赖于平台的 UI 组件，因此具有优异的性能表现。Flutter 应用程序可以实现流畅的动画和高性能的用户体验。
+丰富的组件库：快速开发周期： 灵活的UI设计： 强大的社区支持：
+
+
+2、Flutter是如何实现跨平台开发的？
+1. 自绘UI： Flutter 不使用平台原生的 UI 组件，而是通过自带的渲染引擎（Skia）来绘制应用程序的用户界面。这意味着 Flutter 应用程序的界面是由 Flutter 自己的 UI 组件构成的，而不是由底层操作系统提供的原生 UI 组件。
+2. 统一的开发语言和框架： Flutter 使用 Dart 语言作为开发语言，开发者可以使用相同的代码库编写应用程序的逻辑和界面代码。Flutter 提供了丰富的组件和工具，使开发者能够构建出与平台原生应用相似的用户界面。
+3. 渲染引擎： Flutter 的渲染引擎负责将开发者编写的 UI 代码转换为底层平台的绘图指令。这意味着 Flutter 应用程序的界面是完全独立于平台的，可以在 iOS 和 Android 等不同平台上保持一致的外观和行为。
+4. 访问原生功能： Flutter 提供了一组平台通道（Platform Channels），允许开发者与底层平台进行通信并调用原生功能。开发者可以使用平台通道来访问设备的硬件功能、系统服务和第三方 SDK，从而实现与平台原生应用相似的功能和性能。
+5. 自适应布局： Flutter 提供了丰富的自适应布局组件，使开发者能够根据不同平台和设备的特性来调整应用程序的布局和外观。这使得 Flutter 应用程序能够在不同尺寸和分辨率的设备上实现良好的用户体验。
+
+
+3、Dart语言的特点是什么？
+Dart 是一种由 Google 开发的面向对象、类似 C 语言的通用编程语言。
+1. 面向对象： Dart 是一种面向对象的语言，支持类和对象的概念，提供了面向对象编程所需的特性，如封装、继承、多态等。
+2. 强类型： Dart 是一种强类型语言，所有变量都具有静态类型，并且在编译时会进行类型检查，有助于提高代码的健壮性和可维护性。
+3. 可选类型： Dart 支持可选类型，可以使用类型推断来省略类型声明，也可以显式声明类型。这使得编写代码更加灵活，并且在需要时可以添加类型注解来提高代码的清晰度和可读性。
+4. 异步编程支持： Dart 提供了丰富的异步编程支持，包括 Future、Stream 和 async/await 等机制，使得编写高效的异步代码变得更加简单和直观。
+5. 单线程模型： Dart 使用单线程模型，通过事件循环来处理异步操作，这种模型简化了并发编程，并且有助于避免常见的线程安全问题。
+6. 可选参数和命名参数： Dart 支持可选参数和命名参数的函数调用，这使得函数的调用更加灵活和清晰，可以减少函数重载的需求。
+7. 内置库和工具： Dart 提供了丰富的内置库和工具，包括用于开发 Web 应用的 HTTP、JSON 库，用于异步编程的 Future、Stream 库，以及用于单元测试、静态分析等的工具。
+8. 跨平台支持： Dart 支持跨平台开发，可以使用 Flutter 框架构建跨平台的移动应用和桌面应用，也可以使用 Dart Web 构建 Web 应用，使得开发人员可以在不同平台上共享大部分代码。
+
+
+4、Flutter中的异步编程是如何处理的？
+在Flutter中，异步编程是通过Future、Stream和async/await等机制来处理的。这些机制允许在执行长时间操作（如网络请求、文件读写等）时不阻塞应用程序的主线程，从而保持应用的响应性。
+以下是Flutter中异步编程的一些关键概念和处理方式：
+1. Future： Future表示一个延迟计算的值或错误。它通常用于表示一次性的操作，比如一个网络请求或一个耗时的计算。可以使用.then()方法来注册Future完成时的回调，或者使用async/await语法来等待Future的结果。
+2. Stream： Stream表示一系列异步事件的流。它通常用于表示持续产生的事件，比如用户输入、传感器数据或者网络数据流。可以使用.listen()方法来监听Stream发出的事件，或者使用async/await for语法来等待Stream的事件。
+3. async/await：
+4. 处理异步错误： 可以使用.catchError()方法或try/catch语句来捕获异步操作中可能发生的错误，并进行相应的处理。
+
+
+5. Flutter 定义了三种不同类型的 Channel，它们分别是？
+1. BasicMessageChannel：
+这是最常用的一种 Channel 类型。它允许 Flutter 与宿主平台之间传递简单的消息。它的消息可以是任意类型的数据，但必须是序列化的，例如字符串、数字、布尔值等。通过 BasicMessageChannel，Flutter 和宿主平台可以相互发送消息，并进行双向通信。
+2. MethodChannel：
+MethodChannel 用于在 Flutter 和宿主平台之间进行方法调用。它允许 Flutter 调用宿主平台上的原生方法，并获取返回结果。方法调用的参数和返回值必须是序列化的，例如字符串、数字、布尔值等。通过 MethodChannel，Flutter 可以与宿主平台进行复杂的交互，执行原生功能。
+3. EventChannel：
+EventChannel 用于在 Flutter 和宿主平台之间进行事件的传递。它支持从宿主平台向 Flutter 发送事件通知，Flutter 可以监听这些事件并做出相应的处理。EventChannel 主要用于实时数据流的传输，例如传感器数据、网络状态变化等。通过 EventChannel，Flutter 可以与宿主平台进行实时数据交换。 这些 Channel 类型是 Flutter 与宿主平台进行通信的重要工具，它们使得 Flutter 应用程序能够与原生功能进行无缝集成，并实现更复杂的交互和数据传输。
+
+6.Flutter中的三棵树
+
+Widget 树是非常不稳定的，动不动就执行 build方法，一旦调用 build 方法意味着这个 Widget 依赖的所有其他 Widget 都会重新创建。（反例）如果 Flutter 直接解析 Widget树，将其转化为 RenderObject 树来直接进行渲染，那么将会是一个非常消耗性能的过程，那对应的肯定有一个东西来消化这些变化中的不便，来做cache。（结论）因此，这里就有另外一棵树 Element 树。（作用）Element 树这一层将 Widget 树的变化做了抽象，可以只将真正需要修改的部分同步到真实的 RenderObject 树中，最大程度降低对真实渲染视图的修改，提高渲染效率，而不是销毁整个渲染视图树重建。
+
+即Widget树、Element树和RenderObject树。
+Widget树：控件的配置信息，不涉及渲染，更新代价极低。
+RenderObject树：真正的UI渲染树，负责渲染UI，更新代价极大。
+
+Element树：Widget树和RenderObject树之间的粘合剂,负责将Widget树的变更以最低的代价映射到 RenderObject树上。State 就是保存在 Element 中。
+
+Widget 树就是配置信息的树，我们平时写代码写的就是这棵树。
+RenderObject 树是渲染树，负责计算布局，绘制，Flutter 引擎就是根据这棵树来进行渲染的。
+Element 树作为中间者，管理着将 Widget 生成 RenderObject和一些更新操作。
+
+Flutter遵循一个最基本的原则：判断新的Widget和老的Widget是否是同一个类型：
+如果不是同一个类型，那就把Widget、Element、RenderObject分别从它们的树（包括它们的子树）上移除，然后创建新的对象；
+如果是一个类型，那就仅仅修改RenderObject中的配置，然后继续向下遍历。
+
+
+7.flutter 中的性能优化
+Flutter性能优化是一个重要的开发方向，特别是在开发复杂应用或要求高性能的应用时。以下是一些常见的Flutter性能优化策略：
+1. 使用const关键字： 在构建Widget树时，尽可能使用const关键字来创建常量Widget，这样可以减少在重建时的开销。
+2. 避免不必要的重建： 使用const或const构造函数创建的Widget在相同的参数下不会重建，可以减少Widget树的重建次数。同时，避免使用不稳定的动态值作为key，以减少不必要的Widget重建。
+3. 使用ListView.builder和GridView.builder： 当构建大量相似的子Widget时，使用ListView.builder和GridView.builder来延迟构建和回收子Widget，减少内存占用。
+4. 避免不必要的布局： 避免在每帧中重新计算不必要的布局信息。使用LayoutBuilder或CustomSingleChildLayout来按需计算布局。
+5. 使用RepaintBoundary： 在具有复杂UI的子树中，可以使用RepaintBoundary来将其分离为独立的图层，减少整体重绘的范围。 RepaintBoundary(
+6. 懒加载： 对于耗时的操作或资源密集型的操作，使用懒加载来延迟加载数据或资源，以提高应用程序启动性能。
+7. 使用const枚举： 对于常量值的枚举，使用const关键字可以减少内存使用。
+8. 使用flutter analyze和flutter lint： 使用Flutter的静态分析工具来检测潜在的性能问题和代码风格问题，并按照建议进行优化。
+9. 使用flutter performance工具： 使用Flutter提供的性能工具来检测性能瓶颈，定位慢速渲染或不必要的重建，以及优化应用程序的性能
+ 10. 尽量减少或降级Clip、Opacity等组件的使用
+ Flutter中，Clip主要用于裁剪，裁矩形、圆角矩形、圆形。一旦调用，后续所有的绘图指令都会受其Clip影响。有些ClipRRect可以用   ShapeDecoration代替，Opacitiy改用AnimatedOpacity， 针对图片的Clip裁切，可以走定制图片库Transform实现。
+11.使用Visibility控件替换if/else，有些小伙伴喜欢else时return一个 占位控件，须不知，这种效率是没有Visibility高效的。
+
+12.我们屏幕能显示4个item，每个item构建耗时是10ms。在现有的ListView布局过程中，会在第一帧的时候，同时构建这四个item，总共40ms。
+采用分帧之后，在页面的第一帧我们先通过构建简单的占位item，占位的item可以是个简单的Container。由于其构建基本不耗时，在第一帧的时候构建四个Container不会导致卡顿。 之后将实际的四个item，分别延迟到后面四帧进行渲染。这样对于每个16.7ms而言，都没有发生超时渲染，整个流程不会发生卡顿。
+
+13.频繁做一些筛选等操作会在短时间内多次请求网络，如果网络较差或者服务端返回时间过长，会导致数据展示错乱的问题，在刷新列表时要取消掉还未返回数据的请求。
+
+14.设置itemExtent： 其中itemExtent是一个double类型的数据，如果给定的是一个非空值，那么表示的是child在scroll方向的extent大小。这个属性主要用来控制children的extend信息，这样每个child就不需要自行来判断自己的extend。
+使用itemExtent的好处在于，ListView可以统一的在滚动机制上进行优化，从而提升性能表现。
+
+15.使用 AutomaticKeepAliveClientMixin，如果你的列表项中有需要保持状态的组件，可以使用此 mixin 来保持状态，避免不必要的重建16.6
+16.使用 RepaintBoundary 或 Semantics 包裹不需要重绘的部分，以减少布局重建的开销。
+
+17. ScrollAwareImageProvider，会在列表快速滑动时中断图片的下载和解码，从而减少不必要的内存占用。
+18..对于频繁更新的控件(如动画)，使用RepaintBoundary隔离它，创建单独layer减少重绘区域。
+findChildIndexCallback
+
+ValueListenableBuilder组件：可以监听一个值，当其变化时通过builder回调能重建界面，避免使用setState刷新
+GlobalKey实现控件的局部刷新：将需要单独刷新的widget从复杂的布局中抽离出去，然后通过传GlobalKey引用，这样就可以通过GlobalKey实现跨组件的刷新了。
+
+列表中的重用：在ListView或GridView等可滚动列表中，使用Key可以帮助Flutter跟踪列表项并在数据源更改时有效地更新列表项，而无需重新创建整个列表。
+动态添加或移除小部件：在动态添加或移除小部件时，使用Key可以帮助Flutter正确识别要添加或移除的小部件，而不会影响其他部分的布局。
+
+
+8.Flutter中的状态管理有哪些方式？
+在Flutter中，有多种方式来管理应用的状态，每种方式都适用于不同规模和复杂度的应用。以下是一些常见的状态管理方式：
+1. 基础的setState： 对于简单的小型应用，可以使用StatefulWidget中的setState方法来管理状态。这种方式简单直接，适用于少量的局部状态更新。
+2. Provider： Provider是一种轻量级的状态管理库，它提供了一种简单的方式来共享和管理应用中的状态。通过Provider，可以在应用中访问和更新全局状态，并且可以将状态与UI组件解耦。
+3. Bloc（业务逻辑组件）： Bloc是一种基于流（Stream）的状态管理库，它将应用的状态和业务逻辑分离开来，使得应用的状态更易于管理和测试。Bloc通过事件和状态之间的转换来管理状态，并且可以轻松地实现复杂的状态管理需求。
+4. Redux： Redux是一种流行的状态管理模式，它将应用的状态存储在一个全局的状态树中，并且通过纯函数来更新状态。在Flutter中，可以使用redux库来实现Redux模式的状态管理，它提供了一种可预测性和可测试性的状态管理方案。
+5. GetX： GetX是一个轻量级的Flutter状态管理库，它提供了简单、直观的API来管理应用的状态。GetX支持依赖注入、路由管理、国际化等功能，并且性能优秀，适用于各种规模的应用。
+6. Riverpod： Riverpod是Provider的一个改进版本，它提供了更强大的依赖注入功能和更灵活的状态管理方案。Riverpod支持异步操作、延迟加载和状态刷新等功能，使得状态管理更加简单和高效。
+这些是Flutter中常用的状态管理方式，每种方式都有自己的特点和适用场景，开发者可以根据应用的需求选择合适的状态管理方式。
+
+
+9.GetX、GetBuilder 和 Obx 在底层都使用了不同的机制来实现状态管理和响应式更新。
+GetX:
+底层原理: GetX 是一个轻量级的状态管理库，其底层原理主要基于依赖注入和反射。它使用了 Dart 的反射功能来监听变量的变化，并在变化时通知相关的 Widget 进行更新。
+GetBuilder:
+底层原理: GetBuilder 是通过 InheritedWidget 实现的。当 Model 层的数据发生变化时，GetBuilder 会通过 InheritedWidget 机制通知相关的 Widget 进行重建。
+Obx:
+底层原理: Obx 使用了 Stream 来实现响应式更新。它订阅了被观察对象（通常是 Rx 类型的变量），当这些对象的值发生变化时，Obx 会收到通知并触发 Widget 的重建。
+因此，GetX、GetBuilder 和 Obx 在底层实现上使用了不同的机制，分别基于反射、InheritedWidget 和 Stream 来实现状态管理和响应式更新。这些机制的选择使得 GetX 可以提供灵活而高效的状态管理方案，同时也能够适应不同的开发场景和需求。
+
+NotifyManager是obs继承链条可以追踪到最终的类了，它里面持有了一个GetStream类型的属性subject，GetStream也是getx框架状态管理的核心类，
+
+
+84428802038
+
+hJFm1jSLAU12P5akRMz7EjFjHfux9K.1
+
+
+10.Flutter GetX 原理
+GetX的核心是依赖注入和反射机制。依赖注入是一种设计模式，它允许我们将对象的创建和依赖关系的管理与应用程序的其余部分分离开来。反射机制是一种能够在运行时动态地获取和操作对象信息的能力。
+从源码来看的话，Getx的本质就是使用Map来保持一种依赖关系。通过使用find就能够找到相应的对象。
+看到上面isSingleton这个参数是true，说明这个put方法永远是单例的对象。如果不想单例的话
+可以使用Get.create(）这个方法，每次find时候都会新建一个实例对象，从代码可以看出isSingleton是false。
+
+
+11.混合开发
+要从iOS应用中启动一个Flutter界面，我们必须先创建FlutterEngine和FlutterViewController。
+FlutterEngine充当Dart VM和Flutter运行时的主机，FlutterViewController依附于FlutterEngine，以将UIKit输入事件传递到Flutter中并显示FlutterEngine渲染的帧。
+FlutterEngine的生存时间大于等于FlutterViewController的生存时间。
+通常建议为应用程序预先创建一个长生命周期的FlutterEngine，因为：
+ 显示FlutterViewController时，第一帧显示会更快。
+ 您的Flutter和Dart状态将超过一个FlutterViewController的生存时间。
+ 在显示UI之前，您的应用程序和插件可以与Flutter和Dart逻辑进行交互。
+
+
+12.isolate
+￼
+￼
+在Flutter中，您可以使用Isolate.spawn()函数创建Isolate，并使用SendPort和ReceivePort进行消息传递。
+
+
+
+
+13.Flutter提供了多种动画类以及丰富的动画API，例如：
+
+1. 隐式动画
+ 	1.AnimatedContainer： 当你改变 AnimatedContainer 的属性（如 color、width、height、alignment 等），它会在这些属性之间产生平滑的过渡。
+	2. AnimatedOpacity
+	3. AnimatedPositioned
+
+2.显示动画
+Animation
+AnimationController
+Tween
+显示动画适用于需要更精细控制和定制动画效果的情况，如在用户交互时触发动画、创建复杂的动画序列等。然而，对于一些基本的平滑过渡效果，隐式动画可能更加方便
+
+3.过渡动画Transitions
+用户界面中，从一个状态到另一个状态的平滑变化过程
+PageRouteBuilder
+Hero
+
+4.手势动画
+
+5: 自绘动画 :Custom Animations
+CustomPainter
+
+6.Flutter 动画库
+lottie
+
+Getx中页面重复push:
+1.使用系统的nav；
+2.使用 preventdulipment:false;
+3.继承自 getxwidget和controller create+tag
+https://www.jianshu.com/p/c7bc57da9101
+
+
+Socket和WebSocket都是网络通信协议，但有一些重要的区别：
+1. **Socket（套接字）**：
+   - Socket是一种传输层通信协议，用于实现网络中不同设备之间的通信。
+   - Socket是一种底层的通信机制，提供了一种在网络上发送和接收数据的方法。
+   - Socket是全双工通信，允许客户端和服务器之间进行双向通信。
+   - 使用Socket通信时，通信双方需要建立连接、发送数据、接收数据，并最终关闭连接。
+
+2. **WebSocket**：
+   - WebSocket是一种在Web应用程序中实现即时通信的协议。
+   - WebSocket建立在HTTP协议之上，通过在客户端和服务器之间建立持久性连接来支持实时数据传输。
+   - WebSocket提供了双向通信的能力，客户端和服务器可以在连接建立后随时发���消息。
+   - 使用WebSocket可以实现实时数据推送、即时聊天、在线游戏等应用程序。
+
+主要区别在于：
+- **功能**：Socket是一种底层的通信机制，用于网络通信；而WebSocket是一种高级的协议，用于在Web应用程序中实现实时通信。
+- **协议栈**：Socket是传输层协议，而WebSocket是建立��HTTP协议之上的应用层协议。
+- **双向通信**：WebSocket在连接建立后可以实现双向通信，而Socket本身就支持双向通信。
+
+在实际应用中，选择使用Socket还是WebSocket取决于具体的需求和场景。如果需要实时通信并在Web应用中工作，WebSocket通常是更好的选择。如果需要直接操作网络通信并且不需要浏览器支持，那么Socket可能更合适。
+
+希望以上解释对你有所帮助。如果你有任何其他问题或需要更多信息，请随时告诉我。
+
+版本不一致怎么解决？
+* 在pubspec.yaml文件添加以下内容，让项目强制依赖vm_service版本为13.0.0就可以解决，如下所示
+
+
+ScrollAwareImageProvider
+
+
+
+
+

@@ -6,6 +6,12 @@
       <excludeFolder url="file://$MODULE_DIR$/demo/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/demo/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/demo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/build" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/demo/ios/.symlinks/plugins/fijkplayer/example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
