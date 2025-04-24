@@ -1,74 +1,92 @@
+import 'package:demo/notifier/notifier.dart';
+import 'package:demo/webview/web_detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// ① 创建一个状态提供者，StateProvider会观察一个值，并再改变时得到通知
-final clickCountProvider = StateProvider<int>((ref) => 0);
+import 'gujia/shimmer.dart';
+import 'river_pod/river_pod_page.dart';
+import 'webview/web_page.dart';
 
 void main() {
-  // ② 想使用Riverpod 的 Provider 必须用 ProviderScope 包裹MyApp！
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(MyApp());
 }
 
-// ③ 继承ConsumerWidget，它是可以提供监听Provider的Widget
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+
+  // 统一路由切换IOS风格
+  static const Map<TargetPlatform, PageTransitionsBuilder> defaultBuilders =
+  <TargetPlatform, PageTransitionsBuilder>{
+    TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+  };
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // ④ 通过ref.watch() 来监听Provider的值，当Provider的值改变时，会自动刷新UI
-    final int count = ref.watch(clickCountProvider);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Riverpod Demo')),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('点击计数：$count'),
-            Builder(
-              builder: (context) => ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CountPage()),
-                  );
-                },
-                child: const Text('跳转到增加计数页面'),
-              ),
-            ),
-          ],
-        )),
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+      title: 'MainPage',
+      theme: ThemeData(
+        // 使用ios平台风格包括头部样式等<右滑返回>
+        platform: TargetPlatform.iOS,
+        // 默认字体
+        fontFamily: 'PingFang SC',
+        // 去除选中的波纹动画效果
+        highlightColor: Colors.transparent,
+        splashColor:Colors.transparent,
+        // 不使用Material3 UI
+        useMaterial3: false,
+        // 统一路由切换
+        pageTransitionsTheme:
+         const PageTransitionsTheme(builders: defaultBuilders),
       ),
+      home: const MainPage(),
     );
   }
 }
 
-class CountPage extends ConsumerWidget {
-  const CountPage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final int count = ref.watch(clickCountProvider);
+  State<MainPage> createState() => _MainPageState();
+}
 
+class _MainPageState extends State<MainPage> {
+  List<NavItem> list = [
+    NavItem('river_pod', const RiverPodPage()),
+    NavItem('notifier', const NotifierPage()),
+    NavItem('ShimmerPage', const ShimmerPage()),
+    NavItem('WebPage', const WebPage()),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('增加计数'),
-        ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('点击计数：$count'),
-            Builder(
-              builder: (context) => ElevatedButton(
-                onPressed: () {
-                  // ⑤ 获取Provider的通知器修改状态值(自增)
-                  ref.read(clickCountProvider.notifier).state++;
-                },
-                child: const Text('点击计数+1'),
-              ),
-            ),
-          ],
-        )));
+      appBar: AppBar(title: const Text('首页')),
+      body: ListView.builder(
+          itemCount: list.length,
+          itemBuilder: (_, index) {
+            var item = list[index];
+            return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return item.page;
+                    }));
+                  },
+                  child: Text(item.title),
+                ));
+          }),
+    );
   }
+}
+
+class NavItem {
+  final String title;
+  final Widget page;
+
+  NavItem(
+    this.title,
+    this.page,
+  );
 }

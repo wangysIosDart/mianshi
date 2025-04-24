@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 
-void main() {
-  runApp(MyApp());
-}
+class NotifierPage extends StatefulWidget {
+  const NotifierPage({super.key});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CounterPage(),
-    );
-  }
+  _NotifierPageState createState() => _NotifierPageState();
 }
 
-class CounterPage extends StatefulWidget {
-  @override
-  _CounterPageState createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
+class _NotifierPageState extends State<NotifierPage> {
   final CountNotifier _countNotifier = CountNotifier();
   int _count = 0;
 

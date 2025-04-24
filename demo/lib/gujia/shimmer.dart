@@ -3,31 +3,15 @@ import 'package:shimmer/shimmer.dart';
 
 import 'placeholders.dart';
 
-void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Shimmer',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoadingListPage(),
-    );
-  }
-}
-
-class LoadingListPage extends StatefulWidget {
-  const LoadingListPage({super.key});
+class ShimmerPage extends StatefulWidget {
+  const ShimmerPage({super.key});
 
   @override
-  State<LoadingListPage> createState() => _LoadingListPageState();
+  State<ShimmerPage> createState() => _ShimmerPageState();
 }
 
-class _LoadingListPageState extends State<LoadingListPage> {
+class _ShimmerPageState extends State<ShimmerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

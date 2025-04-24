@@ -13,12 +13,8 @@ final articleStreamProvider = StreamProvider.autoDispose((ref) async* {
   yield response.data;
 });
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class RiverPodPage extends StatelessWidget {
+  const RiverPodPage({super.key});
 
   @override
   Widget build(BuildContext context) {
