@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'gujia/shimmer.dart';
 import 'river_pod/river_pod_page.dart';
+import 'sliversGroup/sliver_group.dart';
 import 'webview/web_page.dart';
 
 void main() {
@@ -55,6 +56,7 @@ class _MainPageState extends State<MainPage> {
     NavItem('notifier', const NotifierPage()),
     NavItem('ShimmerPage', const ShimmerPage()),
     NavItem('WebPage', const WebPage()),
+    NavItem('SliverGroupPage', const SliverCrossAxisGroupExample()),
   ];
 
   @override
